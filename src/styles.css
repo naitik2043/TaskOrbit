@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/* ================= RESET ================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= BASE ================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-50 text-gray-800 dark:bg-gray-950 dark:text-gray-100;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* smoother rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ================= TYPOGRAPHY ================= */
+h1, h2, h3, h4, h5, h6 {
+  @apply text-gray-900 dark:text-gray-100 font-semibold tracking-tight;
+}
+
+p {
+  @apply text-gray-600 dark:text-gray-400 leading-relaxed;
+}
+
+/* ================= INPUTS ================= */
+input,
+textarea,
+select {
+  @apply bg-white dark:bg-gray-900
+         text-gray-800 dark:text-gray-100
+         border border-gray-200 dark:border-gray-700
+         rounded-xl px-3 py-2
+         focus:outline-none focus:ring-2 focus:ring-indigo-500
+         placeholder:text-gray-400
+         transition;
+}
+
+/* ================= BUTTON RESET ================= */
+button {
+  @apply focus:outline-none;
+}
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-700 rounded;
+}
+
+/* ================= CARD (PREMIUM) ================= */
+.card {
+  @apply bg-white dark:bg-gray-900
+         border border-gray-200 dark:border-gray-800
+         rounded-2xl
+         shadow-sm hover:shadow-lg
+         transition-all duration-300;
+}
+
+/* ================= GLASS EFFECT ================= */
+.glass {
+  @apply bg-white/70 dark:bg-gray-900/60
+         backdrop-blur-xl
+         border border-gray-200/50 dark:border-gray-700/50;
+}
+
+/* ================= GRADIENT HELPERS ================= */
+.gradient-primary {
+  @apply bg-gradient-to-r from-indigo-600 to-purple-600 text-white;
+}
+
+/* ================= TOAST ANIMATION ================= */
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+.toast-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+.toast-exit {
+  animation: slideOut 0.3s ease-in;
+}
+
+/* ================= SMOOTH UI TRANSITIONS ================= */
+* {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}

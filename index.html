@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- RESPONSIVE -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- TITLE -->
+  <title>TaskOrbit — Stay Consistent, Achieve More 🚀</title>
+
+  <!-- META -->
+  <meta name="description" content="TaskOrbit is a modern productivity dashboard to manage tasks, track streaks, and build consistency." />
+
+  <!-- THEME COLOR -->
+  <meta name="theme-color" content="#6366f1" />
+
+  <!-- FAVICON -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>" />
+
+  <!-- FONT (PREMIUM UI) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- THEME INIT (NO FLICKER FIX) -->
+  <script>
+    const theme = localStorage.getItem("theme")
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+  </script>
+
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-100">
+  
+  <!-- APP ROOT -->
+  <div id="root"></div>
+
+  <!-- ENTRY -->
+  <script type="module" src="/src/main.jsx"></script>
+
+</body>
+</html>
