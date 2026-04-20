@@ -1,52 +1,47 @@
-import Navbar from './Navbar.jsx'
-import Sidebar from './Sidebar.jsx'
-import Footer from './Footer.jsx'
-import { ToastContainer } from './UIComponents.jsx'
-import { useApp } from '../context/AppContext.jsx'
-import { Outlet } from 'react-router-dom'
+import Navbar from "./Navbar.jsx";
+import Sidebar from "./Sidebar.jsx";
+import Footer from "./Footer.jsx";
+import { ToastContainer } from "./UIComponents.jsx";
+import { useApp } from "../context/AppContext.jsx";
+import { Outlet } from "react-router-dom";
 
 export default function Layout() {
-  const { user } = useApp()
+  const { user } = useApp();
 
   return (
-    <div className="
+    <div
+      className="
       min-h-screen flex flex-col
       bg-gray-50 dark:bg-gray-950
       text-gray-800 dark:text-gray-100
-    ">
-
-      {/* NAVBAR */}
+    "
+    >
       <Navbar />
 
-      {/* MAIN */}
       <div className="flex flex-1 w-full">
-
-        {/* SIDEBAR */}
         {user && (
           <div className="hidden lg:block">
             <Sidebar />
           </div>
         )}
 
-        {/* CONTENT AREA */}
         <main className="flex-1 relative">
-
-          {/* BACKGROUND */}
-          <div className="
+          <div
+            className="
             absolute inset-0 -z-10
             bg-gradient-to-br 
             from-indigo-50/50 via-transparent to-transparent
             dark:from-indigo-900/10
-          " />
+          "
+          />
 
-          {/* GLOBAL CONTAINER */}
           <div
             className={`
               w-full max-w-[1400px]
               mx-auto
 
               px-6 sm:px-10 lg:px-16 xl:px-20
-              ${user ? 'lg:pl-10' : ''}   /* 👈 FIX HERE */
+              ${user ? "lg:pl-10" : ""}
 
               py-14 sm:py-16 lg:py-20
               flex flex-col gap-12
@@ -54,17 +49,12 @@ export default function Layout() {
           >
             <Outlet />
           </div>
-
         </main>
-
       </div>
 
-      {/* FOOTER */}
       <Footer />
 
-      {/* TOAST */}
       <ToastContainer />
-
     </div>
-  )
+  );
 }

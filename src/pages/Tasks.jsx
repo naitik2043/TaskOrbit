@@ -21,14 +21,8 @@ export default function Tasks() {
 
   return (
     <div className="w-full flex justify-center">
+      <div className="w-full max-w-4xl flex flex-col gap-4">
 
-      {/* 🔥 PAGE CONTAINER */}
-      <div className="
-        w-full max-w-4xl
-        flex flex-col gap-4
-      ">
-
-        {/* HEADER */}
         <div className="space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
             Tasks 📝
@@ -39,14 +33,12 @@ export default function Tasks() {
           </p>
         </div>
 
-        {/* ADD TASK */}
         <section className="space-y-5">
           <div className="card p-6">
             <AddTaskForm />
           </div>
         </section>
 
-        {/* FILTERS */}
         <section className="space-y-5">
           <div className="card p-6">
             <TaskFilters
@@ -58,7 +50,6 @@ export default function Tasks() {
           </div>
         </section>
 
-        {/* TASK LIST */}
         <section className="space-y-5">
           <div className="card p-6">
             <TaskList tasks={filtered} />

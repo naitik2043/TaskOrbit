@@ -35,10 +35,8 @@ export default function Auth() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
-
       <div className="w-full max-w-md">
 
-        {/* HEADER */}
         <div className="text-center mb-8">
           <span className="text-5xl">📚</span>
 
@@ -51,7 +49,6 @@ export default function Auth() {
           </p>
         </div>
 
-        {/* CARD */}
         <div className="
           rounded-2xl p-6
           bg-white dark:bg-gray-900
@@ -59,7 +56,6 @@ export default function Auth() {
           shadow-lg
         ">
 
-          {/* ERROR */}
           {error && (
             <div className="
               mb-4 p-3 rounded-lg 
@@ -72,10 +68,8 @@ export default function Auth() {
             </div>
           )}
 
-          {/* FORM */}
           <form onSubmit={handleSubmit} className="space-y-4">
 
-            {/* NAME */}
             {!isLogin && (
               <div>
                 <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
@@ -103,7 +97,6 @@ export default function Auth() {
               </div>
             )}
 
-            {/* EMAIL */}
             <div>
               <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
                 Email
@@ -129,7 +122,6 @@ export default function Auth() {
               </div>
             </div>
 
-            {/* PASSWORD */}
             <div>
               <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
                 Password
@@ -155,7 +147,6 @@ export default function Auth() {
               </div>
             </div>
 
-            {/* BUTTON */}
             <Button type="submit" className="w-full flex items-center justify-center gap-2">
               {isLogin
                 ? <><LogIn size={16} /> Login</>
@@ -164,7 +155,6 @@ export default function Auth() {
 
           </form>
 
-          {/* TOGGLE */}
           <div className="mt-5 text-center">
             <button
               onClick={() => { setIsLogin(!isLogin); setError('') }}

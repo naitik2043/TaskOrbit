@@ -1,20 +1,19 @@
-import { useState } from 'react'
-import { useApp } from '../context/AppContext.jsx'
-import { Button } from './UIComponents.jsx'
-import { Plus, Trash2, Search, Check } from 'lucide-react'
+import { useState } from "react";
+import { useApp } from "../context/AppContext.jsx";
+import { Button } from "./UIComponents.jsx";
+import { Plus, Trash2, Search, Check } from "lucide-react";
 
-// ===== Add Task Form =====
 export function AddTaskForm() {
-  const [title, setTitle] = useState('')
-  const { addTask, showToast } = useApp()
+  const [title, setTitle] = useState("");
+  const { addTask, showToast } = useApp();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!title.trim()) return
-    addTask(title.trim())
-    setTitle('')
-    showToast('Task added!')
-  }
+    e.preventDefault();
+    if (!title.trim()) return;
+    addTask(title.trim());
+    setTitle("");
+    showToast("Task added!");
+  };
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-4">
@@ -22,7 +21,7 @@ export function AddTaskForm() {
         <input
           type="text"
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="Add a new task..."
           className="
             w-full px-4 py-3 rounded-xl 
@@ -40,21 +39,18 @@ export function AddTaskForm() {
         <Plus size={16} /> Add
       </Button>
     </form>
-  )
+  );
 }
 
-// ===== Search & Filter =====
 export function TaskFilters({ filter, setFilter, search, setSearch }) {
   const filters = [
-    { value: 'all', label: 'All' },
-    { value: 'pending', label: 'Pending' },
-    { value: 'completed', label: 'Completed' }
-  ]
+    { value: "all", label: "All" },
+    { value: "pending", label: "Pending" },
+    { value: "completed", label: "Completed" },
+  ];
 
   return (
     <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-
-      {/* 🔍 SEARCH */}
       <div className="relative flex-1">
         <Search
           size={16}
@@ -64,7 +60,7 @@ export function TaskFilters({ filter, setFilter, search, setSearch }) {
         <input
           type="text"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search tasks..."
           className="
             w-full pl-12 pr-4 py-3.5 rounded-2xl 
@@ -82,10 +78,8 @@ export function TaskFilters({ filter, setFilter, search, setSearch }) {
         />
       </div>
 
-      {/* 🎯 FILTER BUTTONS (FIXED) */}
       <div className="flex items-center gap-2">
-
-        {filters.map(f => (
+        {filters.map((f) => (
           <button
             key={f.value}
             onClick={() => setFilter(f.value)}
@@ -95,68 +89,68 @@ export function TaskFilters({ filter, setFilter, search, setSearch }) {
 
               ${
                 filter === f.value
-                  ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                  : 'bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
+                  : "bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
               }
             `}
           >
             {f.label}
           </button>
         ))}
-
       </div>
-
     </div>
-  )
+  );
 }
 
-// ===== Task Item =====
 export function TaskItem({ task }) {
-  const { toggleTask, deleteTask, showToast } = useApp()
+  const { toggleTask, deleteTask, showToast } = useApp();
 
   return (
-    <div className={`
+    <div
+      className={`
       group flex items-center gap-4 
       px-5 py-4 rounded-xl border transition-all
-      ${task.completed
-        ? 'border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10'
-        : 'border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-indigo-300 dark:hover:border-indigo-500/40'
+      ${
+        task.completed
+          ? "border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10"
+          : "border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-indigo-300 dark:hover:border-indigo-500/40"
       }
-    `}>
-
-      {/* CHECKBOX */}
+    `}
+    >
       <button
         onClick={() => {
-          toggleTask(task.id)
-          if (!task.completed) showToast('+10 points! 🎉')
+          toggleTask(task.id);
+          if (!task.completed) showToast("+10 points! 🎉");
         }}
         className={`
           w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-all
-          ${task.completed
-            ? 'bg-emerald-500 border-emerald-500 text-white'
-            : 'border-gray-300 dark:border-gray-600 hover:border-indigo-500'
+          ${
+            task.completed
+              ? "bg-emerald-500 border-emerald-500 text-white"
+              : "border-gray-300 dark:border-gray-600 hover:border-indigo-500"
           }
         `}
       >
         {task.completed && <Check size={12} />}
       </button>
 
-      {/* TITLE */}
-      <span className={`
+      <span
+        className={`
         flex-1 text-sm leading-relaxed
-        ${task.completed
-          ? 'line-through text-gray-400'
-          : 'text-gray-800 dark:text-gray-100'
+        ${
+          task.completed
+            ? "line-through text-gray-400"
+            : "text-gray-800 dark:text-gray-100"
         }
-      `}>
+      `}
+      >
         {task.title}
       </span>
 
-      {/* DELETE */}
       <button
         onClick={() => {
-          deleteTask(task.id)
-          showToast('Task deleted', 'error')
+          deleteTask(task.id);
+          showToast("Task deleted", "error");
         }}
         className="
           opacity-0 group-hover:opacity-100 
@@ -167,12 +161,10 @@ export function TaskItem({ task }) {
       >
         <Trash2 size={14} />
       </button>
-
     </div>
-  )
+  );
 }
 
-// ===== Task List =====
 export function TaskList({ tasks }) {
   if (!tasks.length) {
     return (
@@ -180,12 +172,14 @@ export function TaskList({ tasks }) {
         <p className="text-4xl mb-2">📝</p>
         <p className="text-sm">No tasks found</p>
       </div>
-    )
+    );
   }
 
   return (
     <div className="flex flex-col gap-4">
-      {tasks.map(task => <TaskItem key={task.id} task={task} />)}
+      {tasks.map((task) => (
+        <TaskItem key={task.id} task={task} />
+      ))}
     </div>
-  )
+  );
 }

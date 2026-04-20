@@ -1,24 +1,30 @@
-import { NavLink } from 'react-router-dom'
-import { useApp } from '../context/AppContext.jsx'
-import { LayoutDashboard, CheckSquare, User, BarChart3, Settings, X } from 'lucide-react'
+import { NavLink } from "react-router-dom";
+import { useApp } from "../context/AppContext.jsx";
+import {
+  LayoutDashboard,
+  CheckSquare,
+  User,
+  BarChart3,
+  Settings,
+  X,
+} from "lucide-react";
 
 const links = [
-  { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
-  { to: '/tasks', icon: CheckSquare, label: 'Tasks' },
-  { to: '/progress', icon: CheckSquare, label: 'Progress' },
-  { to: '/analytics', icon: BarChart3, label: 'Analytics' },
-  { to: '/profile', icon: User, label: 'Profile' },
-  { to: '/settings', icon: Settings, label: 'Settings' },
-]
+  { to: "/", icon: LayoutDashboard, label: "Dashboard" },
+  { to: "/tasks", icon: CheckSquare, label: "Tasks" },
+  { to: "/progress", icon: CheckSquare, label: "Progress" },
+  { to: "/analytics", icon: BarChart3, label: "Analytics" },
+  { to: "/profile", icon: User, label: "Profile" },
+  { to: "/settings", icon: Settings, label: "Settings" },
+];
 
 export default function Sidebar() {
-  const { user, sidebarOpen, toggleSidebar, streak, points } = useApp()
+  const { user, sidebarOpen, toggleSidebar, streak, points } = useApp();
 
-  if (!user) return null
+  if (!user) return null;
 
   return (
     <>
-      {/* OVERLAY */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
@@ -35,11 +41,9 @@ export default function Sidebar() {
         border-r border-gray-200 dark:border-gray-800
 
         lg:sticky lg:translate-x-0 lg:z-0
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
       `}
       >
-
-        {/* HEADER */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-800 lg:hidden">
           <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
             Menu
@@ -53,10 +57,8 @@ export default function Sidebar() {
           </button>
         </div>
 
-        {/* NAV */}
         <nav className="flex-1 px-4 py-6 space-y-2">
-
-          {links.map(link => (
+          {links.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
@@ -67,19 +69,18 @@ export default function Sidebar() {
 
                 ${
                   isActive
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
+                    ? "bg-indigo-600 text-white shadow-sm"
+                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
                 }`
               }
             >
-              {/* 🔥 Active Indicator */}
               <span
                 className={`
                 absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 rounded-r-full
                 ${
                   location.pathname === link.to
-                    ? 'bg-indigo-600'
-                    : 'bg-transparent'
+                    ? "bg-indigo-600"
+                    : "bg-transparent"
                 }
               `}
               />
@@ -88,21 +89,18 @@ export default function Sidebar() {
               {link.label}
             </NavLink>
           ))}
-
         </nav>
 
-        {/* STATS */}
         <div className="px-4 pb-6">
-
-          <div className="
+          <div
+            className="
             rounded-2xl p-5 
             bg-gray-50 dark:bg-gray-900
             border border-gray-200 dark:border-gray-800
             shadow-sm
             space-y-4
-          ">
-
-            {/* STREAK */}
+          "
+          >
             <div className="flex items-center justify-between">
               <span className="text-xs text-gray-500 dark:text-gray-400">
                 🔥 Streak
@@ -112,7 +110,6 @@ export default function Sidebar() {
               </span>
             </div>
 
-            {/* POINTS */}
             <div className="flex items-center justify-between">
               <span className="text-xs text-gray-500 dark:text-gray-400">
                 ⭐ Points
@@ -121,12 +118,9 @@ export default function Sidebar() {
                 {points}
               </span>
             </div>
-
           </div>
-
         </div>
-
       </aside>
     </>
-  )
+  );
 }

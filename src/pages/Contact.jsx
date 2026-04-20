@@ -1,28 +1,25 @@
-import { useState } from 'react'
-import { Button } from '../components/UIComponents.jsx'
-import { useApp } from '../context/AppContext.jsx'
-import { Send, Mail, MessageSquare, User } from 'lucide-react'
+import { useState } from "react";
+import { Button } from "../components/UIComponents.jsx";
+import { useApp } from "../context/AppContext.jsx";
+import { Send, Mail, MessageSquare, User } from "lucide-react";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const { showToast } = useApp()
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const { showToast } = useApp();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!form.name || !form.email || !form.message) {
-      showToast('Please fill all fields', 'error')
-      return
+      showToast("Please fill all fields", "error");
+      return;
     }
-    showToast("Message sent! We'll get back to you soon.")
-    setForm({ name: '', email: '', message: '' })
-  }
+    showToast("Message sent! We'll get back to you soon.");
+    setForm({ name: "", email: "", message: "" });
+  };
 
   return (
     <div className="w-full min-h-[calc(100vh-120px)] flex items-center justify-center px-4">
-
       <div className="w-full max-w-[650px] flex flex-col gap-12">
-
-        {/* HEADER */}
         <div className="text-center space-y-3">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
             Contact Us 📬
@@ -32,17 +29,15 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* FORM CARD */}
-        <div className="
+        <div
+          className="
           w-full rounded-2xl p-8
           bg-white dark:bg-gray-900
           border border-gray-200 dark:border-gray-800
           shadow-sm hover:shadow-md transition
-        ">
-
+        "
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
-
-            {/* NAME */}
             <InputField
               icon={<User size={16} />}
               label="Name"
@@ -51,7 +46,6 @@ export default function Contact() {
               placeholder="Your name"
             />
 
-            {/* EMAIL */}
             <InputField
               icon={<Mail size={16} />}
               label="Email"
@@ -60,7 +54,6 @@ export default function Contact() {
               placeholder="you@example.com"
             />
 
-            {/* MESSAGE */}
             <TextAreaField
               icon={<MessageSquare size={16} />}
               label="Message"
@@ -69,20 +62,19 @@ export default function Contact() {
               placeholder="Your message..."
             />
 
-            {/* BUTTON */}
-            <Button type="submit" className="w-full flex items-center justify-center gap-2 py-3 text-base">
+            <Button
+              type="submit"
+              className="w-full flex items-center justify-center gap-2 py-3 text-base"
+            >
               <Send size={16} /> Send Message
             </Button>
-
           </form>
         </div>
-
       </div>
     </div>
-  )
+  );
 }
 
-// ===== INPUT FIELD =====
 function InputField({ label, icon, value, onChange, placeholder }) {
   return (
     <div>
@@ -98,7 +90,7 @@ function InputField({ label, icon, value, onChange, placeholder }) {
         <input
           type="text"
           value={value}
-          onChange={e => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           className="
             w-full pl-10 pr-4 py-3 rounded-xl text-sm
@@ -112,10 +104,9 @@ function InputField({ label, icon, value, onChange, placeholder }) {
         />
       </div>
     </div>
-  )
+  );
 }
 
-// ===== TEXTAREA =====
 function TextAreaField({ label, icon, value, onChange, placeholder }) {
   return (
     <div>
@@ -124,14 +115,12 @@ function TextAreaField({ label, icon, value, onChange, placeholder }) {
       </label>
 
       <div className="relative mt-2">
-        <span className="absolute left-3 top-3 text-gray-400">
-          {icon}
-        </span>
+        <span className="absolute left-3 top-3 text-gray-400">{icon}</span>
 
         <textarea
           rows={5}
           value={value}
-          onChange={e => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           className="
             w-full pl-10 pr-4 py-3 rounded-xl text-sm resize-none
@@ -145,5 +134,5 @@ function TextAreaField({ label, icon, value, onChange, placeholder }) {
         />
       </div>
     </div>
-  )
+  );
 }

@@ -1,27 +1,23 @@
-import { Link } from 'react-router-dom'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Link } from "react-router-dom";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="
+    <footer
+      className="
       w-full border-t
       border-gray-200/60 dark:border-white/10
       bg-white/70 dark:bg-gray-950/60
       backdrop-blur-xl
-    ">
-
+    "
+    >
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 py-8">
-
-        {/* TOP */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-
-          {/* LEFT */}
           <div className="flex items-center gap-2 text-gray-900 dark:text-white font-semibold text-lg tracking-tight">
             <span className="text-2xl">🪐</span>
             <span>TaskOrbit</span>
           </div>
 
-          {/* CENTER LINKS */}
           <div className="flex items-center gap-6 text-sm">
             <Link
               to="/"
@@ -51,9 +47,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* RIGHT SOCIAL */}
           <div className="flex items-center gap-3">
-
             <SocialIcon>
               <Github size={18} />
             </SocialIcon>
@@ -65,25 +59,19 @@ export default function Footer() {
             <SocialIcon>
               <Mail size={18} />
             </SocialIcon>
-
           </div>
-
         </div>
 
-        {/* DIVIDER */}
         <div className="mt-6 border-t border-gray-200 dark:border-gray-800" />
 
-        {/* BOTTOM */}
         <div className="mt-4 text-center text-xs text-gray-500 dark:text-gray-400">
           © {new Date().getFullYear()} TaskOrbit. Built for students 🚀
         </div>
-
       </div>
     </footer>
-  )
+  );
 }
 
-// ===== SOCIAL ICON COMPONENT =====
 function SocialIcon({ children }) {
   return (
     <a
@@ -100,5 +88,5 @@ function SocialIcon({ children }) {
     >
       {children}
     </a>
-  )
+  );
 }
